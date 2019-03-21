@@ -124,12 +124,16 @@ namespace DiTest
             var collection = new ServiceCollection();
             collection.AddTransient<ISome1, Some1>();
             collection.AddTransient<ISome2, Some2>();
-            collection.AddTransient<ISome3, Some3>();
+//            collection.AddScoped<ISome3,Some3>();
+            collection.AddTransient<ISome3,Some3>();
+
             collection.AddTransient<Some4>();
             
             ServiceProvider provider = collection.BuildServiceProvider();
             var some1 = provider.GetService<ISome1>();
             some1.SaySome1();
+            var some2 = provider.GetService<ISome1>();
+            some2.SaySome1();
 //            var some4 = provider.GetService<Some4>();
 //            some4.SayHai();
             
