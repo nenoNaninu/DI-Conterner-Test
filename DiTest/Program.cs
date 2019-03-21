@@ -19,17 +19,33 @@ namespace DiTest
         void SaySome3();
     }
 
+    public interface ISome4
+    {
+        void SaySome4();
+    }
+
     public class Some1 : ISome1
     {
         private ISome2 _some2;
+        private ISome3 _some3;
         public Some1(ISome2 some2)
         {
+            Console.WriteLine("construct 1");
             _some2 = some2;
         }
+        
+        public Some1(ISome2 some2, ISome3 some3)
+        {
+            Console.WriteLine("construct 2");
+            _some2 = some2;
+            _some3 = some3;
+        }
+        
         public void SaySome1()
         {
             Console.WriteLine("Some1");
             _some2.SaySome2();
+            _some3?.SaySome3();
         }
     }
 
@@ -57,9 +73,14 @@ namespace DiTest
         }
     }
 
-    public class Some4
+    public class Some4:ISome4
     {
         public void SayHai()
+        {
+            Console.WriteLine("Some4Hai");
+        }
+
+        public void SaySome4()
         {
             Console.WriteLine("Some4");
         }
